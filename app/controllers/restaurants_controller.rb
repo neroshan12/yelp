@@ -1,16 +1,28 @@
 class RestaurantsController < ApplicationController
+
+  def index
+    @restaurants = Restaurants.all
+  end
+
+  def show
+    @restaurant = Restaurant.find(params[:id])
+  end
   def new
+    @restaurant = Restaurant.new
   end
 
   def create
-    @article = Article.new(params.require(:restaurant).permit(:name, :description)
+    @restaurant = Restaurant.new(restaurant_params)
 
-    @article.save
-    redirect_to @article
+    if @restaurant.save
+      redirect_to @restaurant
+    else
+      render 'new'
+    end
   end
 
   private
-  def article_params
-    params.require(:restaurant).permit(:name, :text)
+  def restaurant_params
+    params.require(:restaurant).permit(:name, :description)
   end
 end
