@@ -3,6 +3,14 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-    render plain: params[:restaurant].inspect
+    @article = Article.new(params.require(:restaurant).permit(:name, :description)
+
+    @article.save
+    redirect_to @article
+  end
+
+  private
+  def article_params
+    params.require(:restaurant).permit(:name, :text)
   end
 end
