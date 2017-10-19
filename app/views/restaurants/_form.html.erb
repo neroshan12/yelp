@@ -1,7 +1,4 @@
-
-<h1>Edit restaurant</h1>
-
-<%= form_with(model: @restaurant) do |form| %>
+<%= form_with model: @restaurant, local: true do |form| %>
 
   <% if @restaurant.errors.any? %>
     <div id="error_explanation">
@@ -32,7 +29,3 @@
   </p>
 
 <% end %>
-
-<!-- how to automatically link back around to the show restaurants page? -->
-
-<%= link_to 'Back', restaurants_path %>
